@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Capture Image in PHP & jQuery</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Capture Image in PHP & jQuery</h1>
+        <form method="POST" action="//http://localhost/webcamapp/savepicture.php">
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="my_camera"></div>
+                    <br>
+                    <input type="button" value="Take Snapshot" onclick="takeSnapshot()">
+                    <input type="hidden" name="image" class="image-tag">
+                </div>
+                <div class="col-md-6">
+                    <div class="results">
+                        Your Captured Image will Appear here:
+                        <div id="result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <br>
+                <button class="btn btn-success">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        Webcam.set({
+            width: 490,
+            height: 390,
+            image_format: 'jpeg',
+            jpeg_quality: 90,
+        });
+        Webcam.attach("#my_camera");
+
+        function takeSnapshot() {
+            Webcam.snap(function(data_uri) {
+                $(".image-tag").val(data_uri);
+                document.getElementById("result").innerHTML = '<img src="' + data_uri + '"/>';
+            });
+        }
+    </script>
+</body>
+
+</html>
+
+<!--<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Campatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web capture image in php & jquery</title>
+    <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+</head>
+
+<body>
+   <div class="container">
+    <h1 class="text-center">
+        capture Image in php & jquary
+    </h1>
+    <form method="POST" action="//http://localhost/webcamapp/savepicture.php">
+        <div class="row">
+            <div class="col-md-6">
+                <div id="my_camera"></div>
+                <br>
+                <input type="button "value="Take Sanapshot" onclick="tack_Snapshot()">
+                <input type="hidden" name="image" class="image_tag">
+
+            </div>
+            <div class="col_md-6">
+                <div class="results">
+                    Your Capture Image will Appear here:
+                </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <br>
+                <button class="btn btn-success">Submit</button>
+            </div>
+              
+        </div>
+        
+    </form>
+
+</body>
+<script>
+    webcam.set({
+        width:490,
+        hight:390,
+        image_format:'jpeg',
+        jpeg_quality:90,
+    })
+    webcam.attach("#my_camera")
+
+    function tack_Snapshot(){
+        webcam.snap(function(data_uri){
+            $(".image-tag").val(data_uri)
+            document.getElementById("result").innerHTML='imag src="+data_uri +"/>'
+        })
+    }
+</script>
+
+</html>
